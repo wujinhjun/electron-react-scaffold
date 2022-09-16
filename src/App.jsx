@@ -11,9 +11,11 @@ function App() {
         </p>
         <p>
           We are using
-          <br /> Node.js
-          <span>{window.test.version("node")}</span>, <br />
-          Chromium <span>{window.test.version("chrome")}</span>,<br />
+          <br />
+          Node.js <span>{window.test.version("node")}</span>,
+          <br />
+          Chromium <span>{window.test.version("chrome")}</span>,
+          <br />
           and Electron <span>{window.test.version("electron")}</span>.
         </p>
       </header>
