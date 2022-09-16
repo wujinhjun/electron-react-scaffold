@@ -15,30 +15,21 @@ const createWindow = () => {
             nodeIntegration: true,
             contextIsolation: true,
             preload: isDev ? path.join(__dirname, 'preload.js') : path.join(__dirname, "../../preload.js"),
-            // preload: isDev ? path.join(__dirname, 'preload.js') : path.join(__dirname, "./preload.js")
         }
     })
 
     // 加载 index.html
     const urlLocation = isDev ? "http://localhost:3000" : `file://${path.join(__dirname, './index.html')}`;
-    // const urlLocation = isDev ?
-    //     "http://localhost:3000"
-    //     : require("url").format({
-    //         protocol: "file",
-    //         slashed: true,
-    //         pathname: path.join(__dirname, './index.html')
-    //     });
-    // const urlLocation = `file://${path.join(__dirname, './index.html')}`;
     console.log(urlLocation);
     mainWindow.loadURL(urlLocation)
     initialize();
     enable(mainWindow.webContents);
 
-    // 打开开发工具
-    mainWindow.webContents.openDevTools()
-    installExtension([REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS], options)
-        .then((name) => console.log(`Added Extension: ${name}`))
-        .catch((err) => console.log('An error occurred: ', err));
+    // // 打开开发工具
+    // mainWindow.webContents.openDevTools()
+    // installExtension([REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS], options)
+    //     .then((name) => console.log(`Added Extension: ${name}`))
+    //     .catch((err) => console.log('An error occurred: ', err));
 
     // conceal menu
     // mainWindow.removeMenu();
