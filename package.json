@@ -40,7 +40,7 @@
   },
   "homepage": "./",
   "build": {
-    "appId": "com.electron.${name}",
+    "appId": "com.electron.scaffold",
     "productName": "electron",
     "copyright": "Copyright © 2022 ${author}",
     "files": [
