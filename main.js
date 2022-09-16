@@ -2,9 +2,8 @@ const { app, BrowserWindow } = require('electron')
 const { initialize, enable } = require("@electron/remote/main");
 const path = require('path')
 const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
-const isDev = require('electron-is-dev');
 
-
+const isDev = process.env.NODE_ENV === "development";
 const createWindow = () => {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
@@ -13,13 +12,24 @@ const createWindow = () => {
         minWidth: 1040,
         minHeight: 680,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
+            contextIsolation: true,
+            preload: isDev ? path.join(__dirname, 'preload.js') : path.join(__dirname, "../../preload.js"),
+            // preload: isDev ? path.join(__dirname, 'preload.js') : path.join(__dirname, "./preload.js")
         }
     })
 
     // 加载 index.html
     const urlLocation = isDev ? "http://localhost:3000" : `file://${path.join(__dirname, './index.html')}`;
+    // const urlLocation = isDev ?
+    //     "http://localhost:3000"
+    //     : require("url").format({
+    //         protocol: "file",
+    //         slashed: true,
+    //         pathname: path.join(__dirname, './index.html')
+    //     });
+    // const urlLocation = `file://${path.join(__dirname, './index.html')}`;
+    console.log(urlLocation);
     mainWindow.loadURL(urlLocation)
     initialize();
     enable(mainWindow.webContents);
