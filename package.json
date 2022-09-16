@@ -9,13 +9,13 @@
   },
   "description": "an effective tool",
   "dependencies": {
-    "@electron/remote": "^2.0.8",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.54.9",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -23,8 +23,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "buildMain": "webpack",
     "hes": "nodemon --watch main.js package.json --exec \"electron .\"",
-    "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\""
+    "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "prepack": "npm run build && npm run buildMain",
+    "predist": "npm run build && npm run buildMain",
+    "postinstall": "electron-builder install-app-deps"
   },
   "eslintConfig": {
     "extends": [
@@ -40,10 +46,14 @@
     "files": [
       "build/**/*",
       "node_modules/**/*",
-      "package.json"
+      "package.json",
+      "preload.js"
+    ],
+    "extraResources": [
+      "preload.js"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "assert"
     },
     "extraMetadata": {
       "main": "./build/main.js"
@@ -51,6 +61,22 @@
     "publish": [
       "github"
     ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "assert/icon.ico"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    },
     "extends": null
   },
   "browserslist": {
@@ -66,14 +92,14 @@
     ]
   },
   "devDependencies": {
+    "@electron/remote": "^2.0.8",
     "concurrently": "^7.3.0",
     "cross-env": "^7.0.3",
     "electron": "^20.0.3",
     "electron-builder": "^23.3.3",
     "electron-devtools-installer": "^3.2.0",
-    "electron-is-dev": "^2.0.0",
     "nodemon": "^2.0.19",
-    "sass": "^1.54.8",
-    "wait-on": "^6.0.1"
+    "wait-on": "^6.0.1",
+    "webpack-cli": "^4.10.0"
   }
 }
