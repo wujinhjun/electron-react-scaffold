@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Getting Started with This Scaffold
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can use `git clone` to get initialized scaffolding
+
+## introduction
+
+``` shell
+git clone  git@github.com:wujinhjun/electron-react-scaffold.git <your-project-name>
+cd your-project-name
+npm install
+npm run dev
+npm run hes
+```
+
+>in the commands  
+`npm run dev` means you can use the electron and react
+`npm run hes` means you can use the scaffold by hot update
+
+**Of course, you can change the command in the `package.json`**
 
 ## Available Scripts
 
+*`npm run start`/`npm run test`/`npm run build`... are the commands that comes with react, the description comes from [create react app](https://github.com/facebook/create-react-app)*
+
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the app in the electron, but can't hot update for changing the electron file
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `npm run hes`
 
-### `npm test`
+Runs the app in the electron after use the `dev` command. This can hot update for electron
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm run pack`
 
-### `npm run build`
+Builds the app for production to the `dist` folder.\
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm run dist`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Builds the app for production install package to the `dist/`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## App configuration
 
-### `npm run eject`
+In the package.json, you can freely configure the command and the packaging instructions of the electron-builder
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### packaging scope
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In the `build\files`:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```json
+"files": [
+    "...",
+    "your other files"
+]
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+*the other files mean code outside the src directory*
+Because the files in the src directory will be the `build` command builds to the `build` folder. For example the `preload.js` need to used in the `main.js`, if it will be packaged in the `build`, the path of `preload.js` will be error.
+
+In the same way, some files can not be placed in the src directory.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To learn Electron, check out the [Electron documentation](https://www.electronjs.org).
+To learn Electron-builder, check out the [Electron-builder](https://www.electron.build/).
