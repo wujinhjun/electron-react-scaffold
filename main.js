@@ -2,8 +2,8 @@ const { app, BrowserWindow } = require('electron')
 const { initialize, enable } = require("@electron/remote/main");
 const path = require('path')
 const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+const isDev = require("electron-is-dev");
 
-const isDev = process.env.NODE_ENV === "development";
 const createWindow = () => {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
@@ -13,8 +13,7 @@ const createWindow = () => {
         minHeight: 680,
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: true,
-            preload: isDev ? path.join(__dirname, 'preload.js') : path.join(__dirname, "../../preload.js"),
+            preload: isDev ? path.join(__dirname, 'preload.js') : path.join(__dirname, "../preload.js"),
         }
     })
 
