@@ -50,9 +50,6 @@
       "package.json",
       "preload.js"
     ],
-    "extraResources": [
-      "preload.js"
-    ],
     "directories": {
       "buildResources": "assert"
     },
