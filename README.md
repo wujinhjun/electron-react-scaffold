@@ -65,4 +65,5 @@ In the same way, some files can not be placed in the src directory.
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 To learn Electron, check out the [Electron documentation](https://www.electronjs.org).
+
 To learn Electron-builder, check out the [Electron-builder](https://www.electron.build/).
