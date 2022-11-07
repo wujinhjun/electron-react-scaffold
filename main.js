@@ -13,7 +13,7 @@ const createWindow = () => {
         minHeight: 680,
         webPreferences: {
             nodeIntegration: true,
-            preload: isDev ? path.join(__dirname, 'preload.js') : path.join(__dirname, "../preload.js"),
+            preload: isDev ? path.join(__dirname, './electronFiles/preload.js') : path.join(__dirname, "../electronFiles/preload.js"),
         }
     })
 

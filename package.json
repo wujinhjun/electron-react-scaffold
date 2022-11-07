@@ -48,7 +48,7 @@
       "build/**/*",
       "node_modules/**/*",
       "package.json",
-      "preload.js"
+      "electronFiles/**/*"
     ],
     "directories": {
       "buildResources": "assert"
